@@ -39,3 +39,7 @@ export const authOptions: AuthOptions = {
     signIn: "/login",
   },
 };
+
+
+const handler = NextAuth(authOptions) as unknown;
+export { handler as GET, handler as POST };
