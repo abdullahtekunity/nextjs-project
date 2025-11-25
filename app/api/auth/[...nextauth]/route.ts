@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "@/app/api/config/db";
 import bcrypt from "bcryptjs";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
-    CredentialsProvider({   
+    CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
@@ -30,15 +30,12 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "jwt", // TypeScript now recognizes this as valid
   },
   jwt: {
-    secret: process.env.JWT_SECRET || "supersecretkey",
+    secret: process.env.NEXTAUTH_SECRET, // use NEXTAUTH_SECRET, not JWT_SECRET
   },
   pages: {
-    signIn: "/login", // optional: custom login page
+    signIn: "/login",
   },
 };
-
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
