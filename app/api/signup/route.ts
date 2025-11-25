@@ -1,6 +1,6 @@
 import { NextRequest , NextResponse } from "next/server";
 import { connectDB } from "../config/db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { createUsersTable } from "../config/tables/user";
 
 
