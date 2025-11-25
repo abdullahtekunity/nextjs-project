@@ -1,8 +1,7 @@
 import { connectDB } from "../config/db";
 import { NextResponse } from "next/server";
 import { createProductsTable } from "../config/tables/products";
-import { requireAuth } from "@/app/lib/route";
-
+import { requireAuth } from "@/lib/route";
 
 export async function GET() {
    const session = await requireAuth();
