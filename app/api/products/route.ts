@@ -1,7 +1,7 @@
 import { connectDB } from "../config/db";
 import { NextResponse } from "next/server";
 import { createProductsTable } from "../config/tables/products";
-import { requireAuth } from "../auth/middleware/route";
+import { requireAuth } from "../../middleware/route";
 
 
 export async function GET() {
@@ -23,6 +23,7 @@ export async function GET() {
 
 
 export async function POST(request: Request) {
+  const session = await requireAuth();
   try {
     const db = await connectDB();
 
